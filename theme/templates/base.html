@@ -23,8 +23,19 @@
     <a href="{% url 'Super_Social:app_page' %}" class="hover:text-blue-600">App Page</a>
   </nav>
 
-  <a href="{% url 'users:register' %}" class="hover:text-blue-600 mr-4">Registrarse</a>
-</header>
+  <div>
+    {% if user.is_authenticated %}
+      <form action="{% url 'users:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="hover:text-blue-600">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'users:login' %}" class="hover:text-blue-600 mr-4">Login</a>
+      <a href="{% url 'users:register' %}" class="hover:text-blue-600">Register</a>
+    {% endif %}
+  </div>
+  
+  </header>
 
 
     <main class="p-4">
