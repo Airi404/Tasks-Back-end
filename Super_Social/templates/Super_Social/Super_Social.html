@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Bienvenido a Super Social
+{% endblock title %}
+
+{% block content %}
+<h1 class="text-8xl text-center">
+ Welcome
+</h1>
+<p class="text-center text-stone-900 dark:text-zinc-400">
+ Hello, Tailwind!
+</p>
+<ul>
+    <div class="max-w-md mx-auto p-4 bg-white dark:bg-gray-800 rounded-2xl mt-4">
+    {% if people %}
+      {% for person in people %}
+          <li>
+            <a href="{% url 'Super_Social:person' slug=person.slug %}" class="hover:text-blue-500">
+            {{ person.name }}, ({{ person.birth }})
+            </a>
+          </li>
+        {% endfor %}
+    {% else %}
+        <li>No hay personas registradas.</li>
+    {% endif %}
+    </div>
+</ul>
+
+{% endblock content %}

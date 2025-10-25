@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+{% load static tailwind_tags %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        Default Title
+        {% endblock title %}
+    </title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+    
+    {% tailwind_css %}
+</head>
+
+<body class=" dark:bg-gray-700 dark:text-gray-100 bg-gray-100 text-gray-900 font-[Times New Roman] italic">
+  <header class="shadow-md p-4 dark:bg-gray-800 flex justify-between items-center w-full">
+  <img src="{% static 'img/favicon-16x16.png' %}" class="w-8" alt="Logo"/>
+
+  <nav class="flex space-x-4 dark:text-gray-100 mx-auto">
+    <a href="{% url 'home' %}" class="hover:text-blue-600">Home</a>
+    <a href="{% url 'Super_Social:app_page' %}" class="hover:text-blue-600">App Page</a>
+  </nav>
+
+  <a href="{% url 'users:register' %}" class="hover:text-blue-600 mr-4">Registrarse</a>
+</header>
+
+
+    <main class="p-4">
+      {% block content %}
+            Default content
+      {% endblock %}
+    </main>
+</body>
+</html>

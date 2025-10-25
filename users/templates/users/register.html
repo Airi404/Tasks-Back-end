@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Register | MiRedSocial
+{% endblock title %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">
+        ¡Bienvenido nuevo usuario!
+    </h1>
+
+    <form action="{% url 'users:register' %}" method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200">
+            Crear cuenta
+        </button>
+    </form>
+</div>
+{% endblock content %}
