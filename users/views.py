@@ -14,16 +14,19 @@ def register_view(request):
 
     return render(request, 'users/register.html', {'form': form})
 
-def login_view(request):
-    if request.method == 'POST':
+def login_view(request): 
+    if request.method == "POST": 
         form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
+        if form.is_valid(): 
             login(request, form.get_user())
-            return redirect('home')
-    else:
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect("home")
+    else: 
         form = AuthenticationForm()
-
-    return render(request, 'users/login.html', {'form': form})
+    
+    return render(request, "users/login.html", { "form": form })
 
 def logout_user(request):
     if request.method == 'POST':

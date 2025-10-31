@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Lista | MiRedSocial
+{% endblock %}
+
+{% block content %}
+
+<form class="text-center" action="{% url 'Super_Social:post_new' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Publicar</button>
+</form>
+    
+    <h1 class="font-semibold">Lista de Productos: </h1>
+    <ul class="space-y-2">
+    {% for product in product_list %}
+        <li class="mr-4">{{ product.name }} - {{ product.price }} €</li>
+    {% empty %}
+        <li>No hay productos disponibles.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

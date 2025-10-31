@@ -10,7 +10,7 @@ Login | MiRedSocial
 <div class="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg text-center space-y-4">
   <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100">¡Bienvenido de nuevo!</h1>
   <h1 class="font-[Times New Roman] text-sm text-gray-500 dark:text-gray-400 ">Login form!</h1>
-  <form class="text-center space-y-4" action="/users/login/" method="post" >
+  <form class="text-center space-y-4" action="{% url 'users:login' %}" method="post" >
     {% csrf_token %}
     {{ form }}
   <button type="submit">Submit form!</button>

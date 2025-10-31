@@ -21,12 +21,22 @@
   <nav class="flex space-x-4 dark:text-gray-100 mx-auto">
     <a href="{% url 'home' %}" class="hover:text-blue-600">Home</a>
     <a href="{% url 'Super_Social:app_page' %}" class="hover:text-blue-600">App Page</a>
+    {% if user.is_authenticated %}
+      <div class="text-left">
+        <a class="mr-4" href="{% url 'Super_Social:products_list' %}">¡Productos!</a>
+      </div>
+    {% else %}
+      <div class="text-right">
+        <a class="mr-4" href="{% url 'users:login' %}">Para ver este apartado Inicia sesión</a>
+      </div>
+    {% endif %}
   </nav>
 
   <div>
     {% if user.is_authenticated %}
       <form action="{% url 'users:logout' %}" method="post">
         {% csrf_token %}
+        <span class="text-sm text-white">Hola, <strong>{{ user.username }}</strong>!</span>
         <button type="submit" class="hover:text-blue-600">Logout</button>
       </form>
     {% else %}
