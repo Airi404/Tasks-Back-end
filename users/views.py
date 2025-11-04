@@ -15,12 +15,12 @@ def register_view(request):
     return render(request, 'users/register.html', {'form': form})
 
 def login_view(request): 
-    if request.method == "POST": 
+    if request.method == "GET": 
         form = AuthenticationForm(data=request.POST)
         if form.is_valid(): 
             login(request, form.get_user())
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
+            if 'next' in request.GET:
+                return redirect(request.GET.get('next'))
             else:
                 return redirect("home")
     else: 

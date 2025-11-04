@@ -17,20 +17,16 @@ def person(request, slug):
     return render(request, 'Person.html', {'person': my_person})
 
 @login_required(login_url="/users/login/")
-def product_list_view(request):
-    product_list = Product.objects.all()[:20]
-    form = UploadProduct()
-    return render(request, "products/list.html", { "product_list": product_list, "form": form })
-
-@login_required(login_url="/users/login/")
 def post_new(request):
+    product_list = Product.objects.all()[:20]
     if request.method == 'POST': 
         form = forms.UploadProduct(request.POST, request.FILES) 
         if form.is_valid():
             newpost = form.save(commit=False) 
             newpost.user = request.user 
             newpost.save()
-        return redirect('Super_Social:products_list')
+            form = forms.UploadProduct()
+        return render(request, 'products/list.html', { "product_list": product_list, 'form':form})
     else:
         form = forms.UploadProduct()
-    return render(request, 'products/list.html', { 'form': form })
+    return render(request, 'products/list.html', { "product_list": product_list, 'form':form})
