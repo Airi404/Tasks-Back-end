@@ -37,7 +37,6 @@ INSTALLED_APPS = [
  'django.contrib.sessions',
  'django.contrib.messages',
  'django.contrib.staticfiles',
- 'django_browser_reload',
  'tailwind',
  'theme',
  'Super_Social',
@@ -52,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'NOMBRE_DEL_PROYECTO.urls'
@@ -132,5 +130,7 @@ STATICFILES_DIRS = [
 ]
 TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = BASE_DIR / "staticfiles"

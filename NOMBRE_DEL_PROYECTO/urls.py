@@ -23,7 +23,6 @@ from django.conf import settings
 urlpatterns = [
  path('admin/', admin.site.urls),
  path('', views.homepage, name='home'),
- path("__reload__/", include("django_browser_reload.urls")),
  path('Super_Social/', include('Super_Social.urls')),
  path('users/', include('users.urls'))
 ]

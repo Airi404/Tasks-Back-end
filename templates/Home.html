@@ -1,38 +1,200 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}
-Inicio | MiRedSocial
-{% endblock title %}
+{% block title %} Inicio | SuperSocial {% endblock title %}
 
 {% block content %}
-<section class="p-6">
-  <div class=" bg-white dark:bg-gray-800 shadow-md">
-    <div class="p-4 flex items-center">
-      <img src="{% static 'images/favicon-16x16.png' %}" alt="Perfil" class="mr-4">
-      <div>
-        <h3 class="text-gray-700 dark:text-gray-300">Juanito</h3>
-        <p class="text-gray-500 dark:text-gray-400">14-10-2024</p>
-      </div>
-    </div>
-  
-   <div class="flex justify-center">
-      <img src="{% static 'images/R.jpg' %}" alt="Imagen" class="rounded-2xl w-4/5">
-    </div>
-
-    <div class="flex justify-center mt-4">
-        <div class="flex space-x-6">
-          <button class="text-xl hover:scale-110 transition-transform">❤️</button>
-          <button class="text-xl hover:scale-110 transition-transform">💬</button>
-          <button class="text-xl hover:scale-110 transition-transform">🔗</button>
+<div class="feed-container">
+    <article class="post-card">
+        <div class="post-header">
+            <div class="user-avatar">
+                <img src="{% static 'images/favicon-16x16.png' %}" alt="Perfil">
+            </div>
+            <div class="user-info">
+                <h3 class="username">Juanito</h3>
+                <p class="post-date">Publicado el 14-10-2024</p>
+            </div>
+            <button class="options-btn">•••</button>
         </div>
-    </div>
+      
+        <div class="post-image-container">
+            <img src="{% static 'images/R.jpg' %}" alt="Imagen del post" class="post-main-image">
+        </div>
 
-    <div class="flex items-center px-6 py-4 dark:border-gray-700">
-      <img src="{% static 'images/favicon-16x16.png' %}" alt="Comentario" class="mr-4 w-8 h-8">
-      <input type="text" placeholder="Comentar..." class="w-full p-2 rounded-md bg-gray-100 dark:bg-gray-700 dark:text-white"/>
-    </div>
-  </div>
-</section>
-{% endblock content %}
+        <div class="post-actions">
+            <div class="action-buttons">
+                <button class="btn-icon love" title="Me gusta">❤️</button>
+                <button class="btn-icon comment" title="Comentar">💬</button>
+                <button class="btn-icon share" title="Compartir">🔗</button>
+            </div>
+        </div>
+
+        <div class="post-caption">
+            <p><strong>Juanito</strong> ¡Por fin la red social se ve increíble! El modo oscuro es otra cosa. 🔥 #Django #SuperSocial</p>
+        </div>
+
+        <div class="post-comment-input">
+            <div class="mini-avatar">
+                <img src="{% static 'images/favicon-16x16.png' %}" alt="Tu perfil">
+            </div>
+            <input type="text" placeholder="Añade un comentario..." class="comment-field">
+            <button class="btn-post">Publicar</button>
+        </div>
+    </article>
+</div>
+
+<style>
+    /* Contenedor del Feed */
+    .feed-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    /* La Tarjeta del Post */
+    .post-card {
+        background-color: #1e293b; /* Coincide con Login/Register */
+        border: 1px solid #334155;
+        border-radius: 24px;
+        width: 100%;
+        max-width: 550px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Cabecera */
+    .post-header {
+        padding: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    .user-avatar img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 2px solid #3b82f6;
+        padding: 2px;
+        margin-right: 12px;
+    }
+
+    .user-info .username {
+        color: #f8fafc;
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .user-info .post-date {
+        color: #64748b;
+        font-size: 12px;
+        margin: 2px 0 0 0;
+    }
+
+    .options-btn {
+        margin-left: auto;
+        background: none;
+        border: none;
+        color: #94a3b8;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    /* Imagen */
+    .post-image-container {
+        background-color: #0f172a;
+        display: flex;
+        justify-content: center;
+    }
+
+    .post-main-image {
+        width: 100%;
+        max-height: 550px;
+        object-fit: cover;
+    }
+
+    /* Botones de acción */
+    .post-actions {
+        padding: 12px 16px 8px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn-icon {
+        background: none;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        padding: 0;
+    }
+
+    .btn-icon:hover {
+        transform: scale(1.2);
+    }
+
+    .btn-icon:active {
+        transform: scale(0.9);
+    }
+
+    /* Descripción */
+    .post-caption {
+        padding: 0 16px 16px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #cbd5e1;
+    }
+
+    .post-caption strong {
+        color: #f8fafc;
+        margin-right: 5px;
+    }
+
+    /* Input de comentarios */
+    .post-comment-input {
+        padding: 16px;
+        border-top: 1px solid #334155;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .mini-avatar img {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+    }
+
+    .comment-field {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #f8fafc;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .comment-field::placeholder {
+        color: #475569;
+    }
+
+    .btn-post {
+        background: none;
+        border: none;
+        color: #3b82f6;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .btn-post:hover {
+        color: #60a5fa;
+    }
+</style>
+{% endblock %}
