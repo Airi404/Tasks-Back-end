@@ -9,7 +9,7 @@ services:
     volumes:
       - staticfiles:/app/staticfiles
       - .media/:/app/media
-    ports:
+    expose:
       - "8000"
   nginx:
     image: nginx:latest
