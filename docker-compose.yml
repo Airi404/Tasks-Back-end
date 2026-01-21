@@ -8,7 +8,7 @@ services:
 
     volumes:
       - staticfiles:/app/staticfiles
-      - .media/:/ust/src/app/media
+      - .media/:/app/media
     ports:
       - "8000"
   nginx:
